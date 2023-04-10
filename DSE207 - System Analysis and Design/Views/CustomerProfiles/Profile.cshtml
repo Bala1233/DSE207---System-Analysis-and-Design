@@ -1,0 +1,161 @@
+﻿@model DSE207___System_Analysis_and_Design.Models.Customer
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/ProfilesCss/ProfilesDesign.css" />
+<div class="container">
+
+    <div class="Left_Box">
+
+        <div id="editUser">
+        </div>
+    </div>
+
+    <div class="Right_Box">
+
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label" style="display:none"></label>
+                <input asp-for="Id" readonly class="form-control" style="display:none          />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label" style="display:none"></label>
+                <input asp-for="CustomerId" readonly class="form-control" style="display:none" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label"></label>
+                        <input asp-for="FullName" class="form-control FullnameValue" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control PasswordValue" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" readonly class="form-control EmailValue" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control PhoneValue" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adress" class="control-label"></label>
+                <input asp-for="Adress" class="form-control AddressValue" />
+                <span asp-validation-for="Adress" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input name="ImageUrl" class="ImageValue file-upload" id="uploadImage" type="file" accept=".jpg,.png" />
+            </div>
+
+            <div class="form-group">
+                <input data-CustomerId="@Model.CustomerId" type="button" value="SaveChange" class="btn btn-primary SaveChangeBtn" />
+            </div>
+            <br/>
+            <div style="display:none"class="SaveSuccessBtn alert alert-success">SaveChange Successfull</div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+
+        $(".FullnameValue").keyup(function () {
+            $("#ShowName").html("Name : " + $(this).val())
+        })
+        $(".PasswordValue").keyup(function () {
+            $("#Password").html("Password : " + $(this).val())
+        })
+        $(".PhoneValue").keyup(function () {
+            $("#PhoneNo").html("PhoneNo : " + $(this).val())
+        })
+        $(".AddressValue").keyup(function () {
+            $("#Address").html("Address : " + $(this).val())
+        })
+        $.ajax({
+            type: "GET",
+            url: "/ProfileFunction/CustomerProfiles",
+            success: function (data) {
+                $(".Left_Box").append(`
+                                      <div class="card" style="width: 18rem;" id="canvas">
+                                           <img class="card-img-top OnShowPic" id="pic" src="${data.imageUrl}" />
+                                          <div class="card-body margin5">
+                                            <h2 class="card-title" id="ShowName">Name : ${data.fullName}</h2>
+                                               <h4 class="card-text" id="Password">Password : ${data.password}</h4><br>
+                                                 <div class="card-title" id="Email">Email : ${data.email}</div>
+                                           <div class="card-title" id="PhoneNo">PhoneNo : ${data.phone}</div>
+                                              <div class="Text" id="Address">Address : ${data.adress}</div>
+                                               </div>
+                                          </div>
+
+                                         `)
+
+            }
+        })
+
+
+        $(".SaveChangeBtn").click(function () {
+            var CustomerId = $(this).attr("data-CustomerId");
+            var Fullname = $(".FullnameValue").val();
+            var Password = $(".PasswordValue").val()
+            var Phone = $(".PhoneValue").val()
+            var Address = $(".AddressValue").val()
+            var Image = $(".OnShowPic").attr("src")
+            console.log(Image)
+            $.ajax({
+                type: "POST",
+                url: "/CustomerProfiles/Profile",
+                data: { CustomerId: CustomerId, FullName: Fullname, Password: Password, Phone: Phone, Adress: Address, ImageUrl: Image },
+                success: function (data) {
+                    console.log(data)
+                    $(".SaveSuccessBtn").slideDown(1000, function () {
+                        setTimeout(function () {
+                            $(".SaveSuccessBtn").slideUp(1000)
+                        }, 2000)
+                    })
+
+                }
+            })
+        })
+        function getBase64(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+
+                //alert(reader.result)
+                $(".OnShowPic").attr("src", reader.result);
+
+            }; reader.onerror = function (error) {
+                alert('Invalid file type');
+            };
+        }
+        var x;
+        var image;
+        $("#uploadImage").change(function (event) {
+            x = getBase64(event.target.files[0])
+
+        })
+    })
+
+</script>

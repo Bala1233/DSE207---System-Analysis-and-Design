@@ -1,0 +1,116 @@
+﻿@model IEnumerable<DSE207___System_Analysis_and_Design.Models.Product>
+
+@{
+    ViewData["Title"] = "AdminManageProducts";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link href="~/css/AdminCss/ProductsList.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+
+</style>
+
+<div class="Container">
+    <h2 style="margin-left:1rem">Manage Products List  <input style="float:right" placeholder="Search" id="Keyword" /></h2>
+    <table id="tableList" class="table">
+        <thead>
+            <tr>
+                <th>
+
+                    <input id="SelectAll" style="width:20px;height:20px" type="checkbox" />
+                    <label> All</label>
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductId)
+                    <button class="sort-button" onclick="sortTable(0,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                    <button class="sort-button" onclick="sortTable(1,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OriPrice)
+                    <button class="sort-button" onclick="sortTable(2,Number)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisPrice)
+                    <button class="sort-button" onclick="sortTable(3,Number)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Qty)
+                    <button class="sort-button" onclick="sortTable(4,Number)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImg1)
+                </th>
+                <th>  @Html.DisplayNameFor(model => model.Status)</th>
+            </tr>
+        </thead>
+        <tbody id="OrderList">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="selectBox">
+                        <input style="width:20px;height:20px" type="checkbox" class="selectBox" value='@item.ProductId'  >
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductId)
+                    </td>
+                    <td class="Text_Design">
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OriPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DisPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                    <td>
+                        <div class="photo">
+                            <img src="@item.ProductImg1" />
+                            <img src="@item.ProductImg2" />
+                        </div>
+                    </td>
+                    <td>
+                        <button data-productId="@item.ProductId" class="btn statusBtn EnabledBtn1">@(item.Status ? "Enable" : "Disable")</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div style="display:none;" class="multiBtnContainer">
+        <div id="MultiBtnDiv" style="display:flex;position:absolute;bottom:40px;right:40px;z-index:2;justify-content:space-between;width:450px">
+            <button class="btn btn-success" id="activeSelectedProduct" style="width:100px;padding:5px 10px">Active</button>
+            <button class="btn btn-warning" id="disabledSelectedProduct" style="width:100px;padding:5px 10px">Disabled</button>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/Admin/Status_Function.js"></script>
+<script src="~/js/publicgrid/DataGrid.js"></script>
+<script src="~/AdminLte/Js/CustomerList.js"></script>
+<script>
+    $("#OrderList tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    })
+</script>

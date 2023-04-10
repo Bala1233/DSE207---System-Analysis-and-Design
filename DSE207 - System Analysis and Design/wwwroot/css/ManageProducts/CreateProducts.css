@@ -1,0 +1,90 @@
+﻿.Container{
+    padding:10px 50px;
+}
+
+.LEft_BOX {
+    padding-top: 1rem;
+    font-family: 'Times New Roman';
+    display: block;
+}
+
+.RIGHT_BOX {
+    padding-top: 1rem;
+  
+}
+    .RIGHT_BOX img {
+    }
+
+.smallPic {
+    height: 80%;
+    width: 100%;
+}
+
+.OnShowPic {
+    height: 90%;
+   width:80%;
+}
+
+#ShowDescription, #ShowTitle, #ShowName {
+    word-break: break-all;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 22px;
+    padding: 10px;
+}
+
+.money {
+    font-size: 20px;
+}
+
+.free {
+    color: #444444;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.more-info {
+    text-decoration: none;
+    color: black;
+}
+
+    .more-info:hover {
+        font-weight: bold;
+    }
+
+h3 {
+    text-transform: uppercase;
+}
+
+ul {
+    list-style: square;
+}
+
+.cart {
+    background-color: black;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border-top: 5px solid black;
+}
+
+    .cart:hover {
+        color: #000000;
+        background-color: #ffffff;
+    }
+
+.FormDesign{
+    font-size:100%;
+}

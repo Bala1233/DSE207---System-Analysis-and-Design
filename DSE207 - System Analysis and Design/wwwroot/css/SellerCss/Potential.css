@@ -1,0 +1,11 @@
+﻿.Container{
+    padding:1rem 3rem;
+}
+
+tbody tr td{
+    height:3.3rem;
+}
+.sort-button{
+    border:none;
+    background-color:#f7f7f7;
+}

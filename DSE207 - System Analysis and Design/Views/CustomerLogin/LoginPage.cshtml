@@ -1,0 +1,351 @@
+﻿@{
+    ViewData["Title"] = "LoginPage";
+}
+
+<link href="~/css/Merchandise/theme.css" rel="stylesheet" />
+<link href="~/css/Main/Fotter.css" rel="stylesheet" />
+<link href="~/css/Merchandise/SearchBar.css" rel="stylesheet" />
+<link href="~/css/Merchandise/slideCart.css" rel="stylesheet" />
+<link href="~/css/MERchandise/SliderPage.css" rel="stylesheet" />
+<link href="~/css/Login/SecondLoginPage.css" rel="stylesheet" />
+<link href="~/css/Merchandise/_customer_Side_Cart.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family
+         =Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .custom-model-main {
+        text-align: center;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0; /* z-index: 1050; */
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+        opacity: 0;
+        -webkit-transition: opacity 0.15s linear, z-index 0.15;
+        -o-transition: opacity 0.15s linear, z-index 0.15;
+        transition: opacity 0.15s linear, z-index 0.15;
+        z-index: -1;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .model-open {
+        z-index: 99999;
+        opacity: 1;
+        overflow: hidden;
+    }
+
+    .custom-model-inner {
+        -webkit-transform: translate(0, -25%);
+        -ms-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+        -webkit-transition: -webkit-transform 0.3s ease-out;
+        -o-transition: -o-transform 0.3s ease-out;
+        transition: -webkit-transform 0.3s ease-out;
+        -o-transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+        display: inline-block;
+        vertical-align: middle;
+        width: 600px;
+        margin: 30px auto;
+        max-width: 97%;
+    }
+
+    .custom-model-wrap {
+        color: white;
+        display: block;
+        width: 100%;
+        position: relative;
+        background-color: rgba(0,0,0,.8);
+       /* border: 1px solid skyblue;*/
+        border-radius: 6px;
+        -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        /*box-shadow: 0 3px 9px skyblue;*/
+        background-clip: padding-box;
+        outline: 0;
+        text-align: left;
+        padding: 20px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+
+    .model-open .custom-model-inner {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+        position: relative;
+        z-index: 999;
+    }
+
+    .model-open .bg-overlay {
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 99;
+    }
+
+    .bg-overlay {
+        background: rgba(0, 0, 0, 0);
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        -webkit-transition: background 0.15s linear;
+        -o-transition: background 0.15s linear;
+        transition: background 0.15s linear;
+    }
+
+    .closeSuccess-btn {
+        position: absolute;
+        right: 0;
+        top: -30px;
+        cursor: pointer;
+        z-index: 99;
+        font-size: 30px;
+        color: #fff;
+    }
+
+    .pop-up-content-wrap {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    @@media screen and (min-width:800px) {
+        .custom-model-main:before {
+            content: "";
+            display: inline-block;
+            height: auto;
+            vertical-align: middle;
+            margin-right: -0px;
+            height: 100%;
+        }
+    }
+
+    @@media screen and (max-width:799px) {
+        .custom-model-inner {
+            margin-top: 45px;
+        }
+    }
+</style>
+<div style="margin:0px;z-index:1;position:absolute;top:0px;display:none;width:100%;text-align:center" class="alert alert-dark alert-dismissible  AlertMsg" role="alert">
+    <strong></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<section id="sec-542c" data-image-width="1920" data-image-height="1280" data-bottom-top="background-position: 50% 0vh;"
+         data-top-bottom="background-position: 50% -20vh"
+         style="padding:50px 0px;background-image:url('https://w0.peakpx.com/wallpaper/194/922/HD-wallpaper-video-game-choji-mahjong.jpg');
+background-attachment: fixed; background-position: 50% -13.7124vh;">
+
+
+    <section class="user">
+        <div class="user_options-container">
+            <div class="user_options-text">
+                <div class="user_options-unregistered">
+                    <h2 class="user_unregistered-title">Don't have an account?</h2>
+                    <p class="user_unregistered-text">You may declare Riichi when you achieve Tenpai (ready hand) at Menzenchin (closed hand). Riichi becomes a Yaku when you win this hand.</p>
+                    <button class="user_unregistered-signup " id="signup-button">Sign up</button>
+                </div>
+
+                <div class="user_options-registered">
+                    <h2 class="user_registered-title">Have an account?</h2>
+                    <p class="user_registered-text">Yaku is a condition to win which also determines the value of the player's hand.</p>
+                    <button class="user_registered-login " id="login-button">Login</button>
+
+                </div>
+            </div>
+
+            <div class="user_options-forms" id="user_options-forms">
+                <div class="user_forms-login">
+                    <h2 class="forms_title">Login</h2>
+
+                    <form class="forms_form">
+                        <fieldset class="forms_fieldset">
+                            <div class="forms_field">
+                                <input id="Email" name="Email" type="email" placeholder="Email" class="forms_field-input ErrorMsg Email" required autofocus />
+
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                            <div class="forms_field">
+                                <input id="Password" name="Password" type="password" placeholder="Password" class="forms_field-input Password" required />
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+
+                        </fieldset>
+                        <div class="forms_buttons">
+
+                            <input id="loginBtn" type="button" value="Log In" class="forms_buttons-action ErrorMsg">
+                            <button class="user_registered-login "><a href="~/Admin/AdminLoginPage">Admin-Login</a></button><br />
+                        </div>
+                        <button style="margin-left:9rem;" class="user_registered-login "><a href="~/ManageSeller/SellerLoginPage">Seller-Login</a></button>
+                        <span id="loginError" style="color:red"></span>
+                    </form>
+                </div>
+
+                <div class="user_forms-signup">
+                    <h2 class="forms_title">Sign Up</h2>
+
+                    <form class="forms_form" id="contactForm" action="~/CustomerLogin/Register" method="post">
+                        <fieldset class="forms_fieldset">
+                            <div class="forms_field">
+                                <input id="FullName" name="FullName" type="text" placeholder="Full Name" class="forms_field-input" required />
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                            <div class="forms_field">
+                                <input type="Email" name="Email" id="SignEmail" placeholder="Email" class="forms_field-input Email" required />
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                            <div class="forms_field">
+                                <input type="Password" id="SignPassword" name="Password" placeholder="Password" class="forms_field-input Password" required />
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="forms_field">
+                                        <input id="Phone" name="Phone" type="text" placeholder="No Phone" class="forms_field-input" required />
+                                        <span class="ErrorMsgSpan"></span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+
+                                    <div type="button" class="btn btn-group-sm OtpBtn">OTP</div>
+                                    <div class="forms_field">
+                                        <input required id="OtpPlace" type="text" style="display:none" placeholder="6 Digit" class="forms_field-input " />
+                                        <span class="ErrorMsgSpan"></span>
+                                    </div>
+                                    <div id="OtpMsg" style="display:none">OTP Sent</div>
+                                </div>
+                            </div>
+                            <div class="forms_field">
+                                <input id="Adress" type="text" name="Adress" placeholder="Address" class="forms_field-input " required />
+                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                            <div class="forms_field">
+                                <input name="ImageUrl" class="ImageValue file-upload uploadImage" id="ImageUrl" type="file" accept=".jpg,.png" />
+                                <img style="display:none" class="OnShowPic"src="" />
+                                @*<input id="ImageUrl" type="text" name="ImageUrl" placeholder="ImageUrl" class="forms_field-input " required />
+                                *@                                <span class="ErrorMsgSpan"></span>
+                            </div>
+                        </fieldset>
+                        <div class="forms_buttons">
+                            <input id="signBtn" type="submit" value="Sign up" class="forms_buttons-action ErrorMsg">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<div class="custom-model-main">
+    <div class="custom-model-inner">
+        <div class="closeSuccess-btn">×</div><div class="custom-model-wrap">
+            <div class="pop-up-content-wrap fontAorus">
+                Register Success!<br /> Close this window back to login
+            </div>
+        </div>
+    </div><div class="bg-overlay"></div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/js/LoginPage/SecondLoginFunction1.js?5"></script>
+
+<script>
+    $(function () {
+
+        var opt;
+        $(".OtpBtn").click(function () {
+            $("#OtpMsg").fadeIn(3000);
+            $(".OtpBtn").fadeOut(500);
+            $("#OtpPlace").fadeIn(3000);
+
+            $.ajax({
+                type: "GET",
+                url: "/CustomerLogin/RegisterOtpAjax",
+                async: false,
+                success: function (data) {
+                    alert(data)
+                    opt = data
+                }
+            })
+
+        })
+        $('#contactForm').submit(function () {
+
+            return false;
+        });
+        $("#signBtn").click(function () {
+
+            var otpPass = $("#OtpPlace").val();
+            if (otpPass != opt || typeof opt === "undefined") {
+
+                $("#OtpPlace").next().text("**OTP password Incorrect")
+                return;
+            }
+            else {
+                $(this).prev().find(".ErrorMsgSpan").text("")
+
+                var NewcCustomer = new Object({
+                    FullName: $("#FullName").val(),
+                    Password: $("#SignPassword").val(),
+                    Email: $("#SignEmail").val(),
+                    Phone: $("#Phone").val(),
+                    Adress: $("#Adress").val(),
+                    ImageUrl: $(".OnShowPic").attr("src")
+                })
+
+                $.ajax({
+                    type: "POST",
+                    url: "/CustomerLogin/Register",
+                    data: { NewcCustomer: NewcCustomer },
+                    success: function (data) {
+
+
+                        $(".custom-model-main").addClass('model-open');
+
+                        $(".closeSuccess-btn, .bg-overlay").click(function () {
+                            $(".custom-model-main").removeClass('model-open');
+                            $("#login-button").click()
+                        });
+                    }
+
+                })
+            }
+
+        })
+        function getBase64(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+
+                //alert(reader.result)
+                $(".OnShowPic").attr("src", reader.result);
+
+            }; reader.onerror = function (error) {
+                alert('Invalid file type');
+            };
+        }
+        var x;
+        var image;
+        $(".uploadImage").change(function (event) {
+            x = getBase64(event.target.files[0])
+
+        })
+
+    })
+</script>

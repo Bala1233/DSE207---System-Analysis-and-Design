@@ -1,0 +1,91 @@
+﻿.slideCart {
+    position: fixed;
+    z-index: 999;
+    top: 0px;
+    right: 0px;
+    width: 30%;
+    height: 100%;
+    background: white;
+}
+
+.shadow {
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0,0,0,.75);
+}
+
+.slideCartHedaer {
+    position: relative;
+    background: white;
+    width: 100%;
+    padding: 10px;
+    height: 10%;
+    text-align: center;
+}
+
+    .slideCartHedaer h2 {
+        width: 80%;
+        display: inline-block;
+    }
+
+.slideCartContent {
+    position: relative;
+    background: rgba(239, 239, 239, 0.86);
+    width: 100%;
+    padding: 10px;
+    height: 80%;
+}
+
+    .slideCartContent ul li {
+        padding: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+.slideCartCheckOut {
+    position: relative;
+    background: lightblue;
+    width: 100%;
+    height: 10%;
+}
+
+    .slideCartCheckOut button {
+        width: 100%;
+        height: 100%;
+        border: none;
+        transition: all .3s ease;
+        background-color: rgba(17, 204, 255, 1);
+    }
+
+        .slideCartCheckOut button:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+        .slideCartCheckOut button::before {
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .slideCartCheckOut button:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .slideCartCheckOut button::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            inset: 0 0 0 0;
+            background: black;
+            border: solid 1px white;
+            z-index: -1;
+            transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+        }

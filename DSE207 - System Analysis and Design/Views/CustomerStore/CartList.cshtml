@@ -1,0 +1,251 @@
+﻿@model IEnumerable<CartProduct>
+@{
+    ViewData["Title"] = "CartList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @@media (min-width: 1025px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .card-registration .select-arrow {
+            top: 13px;
+        }
+
+        .bg-grey {
+            background-color: #eae8e8;
+        }
+
+        @@media (min-width: 992px) {
+            .card-registration-2 .bg-grey {
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+            }
+        }
+
+        @@media (max-width: 991px) {
+            .card-registration-2 .bg-grey {
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+            }
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="h-100 h-custom" style="background-color: #f7f7f7;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                            <h6 class="mb-0 text-muted Item_Cart_Count">@ViewBag.Count items</h6>
+                                        </div>
+
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <input id="PtyQty-@item.product.Id" type="hidden" value="@item.product.Qty" />
+
+                                            @* <hr class="my-4">*@
+                                            <div style="color:red;font-size:20px" class="errorMsg-@item.cart.CartId"></div>
+                                            <div style="padding:10px" class="row mb-4 d-flex justify-content-between align-items-center">
+                                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <img src="@item.product.ProductImg1"
+                                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted">@item.product.Title</h6>
+                                                    <h6 class="text-black mb-0">@item.product.ProductName</h6>
+                                                </div>
+                                                @*==========================显示 - ====================================*@
+                                                <div class="col-md-4 col-lg-3 col-xl-2 d-flex">
+
+                                                    @if (item.cart.Qty <= 1)
+                                                    {
+                                                        <button class="btn btn-link px-2 Minus" value="@item.cart.CartId" disabled>
+                                                            <i class="fa fa-minus" value="qty-@item.cart.CartId"></i>
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn btn-link px-2 Minus" value="@item.cart.CartId">
+                                                            <i class="fa fa-minus" value=""></i>
+                                                        </button>
+                                                    }
+
+                                                    @*==========================显示数字====================================*@
+
+                                                    <input id="Display-@item.cart.CartId" maxlength="3" value="@item.cart.Qty" type="text"
+                                                       class="  qty qtyinput" />
+
+                                                    @*==========================显示 + ====================================*@
+
+                                                    <button class=" btn btn-link px-2 Plus" value="@item.cart.CartId">
+                                                        <i class="fa fa-plus " value="qty-@item.cart.CartId"></i>
+                                                    </button>
+
+                                                </div>
+                                                @*===============================价钱=====================================*@
+                                                <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                                                    <h6 class="mb-0">$ @item.product.DisPrice</h6>
+                                                </div>
+                                                @*===============================Remove Products=====================================*@
+
+                                                <div style="position:absolute;right:-20px" id="demo" class="col-md-1 col-lg-1 col-xl-1 text-end trashDiv">
+                                                    <button data-cartId="@item.cart.CartId" class="transhicon" type="button">
+                                                        <div class="text-muted "><i class="fa fa-trash "></i></div>
+                                                    </button>
+                                                </div>
+
+                                                <div class="confirmation" style="display:none;text-align:center;background-color:black;position:absolute">
+                                                    <span style="color:white;font-size:18px;">Do you want to remove ?</span>
+                                                    <br>
+                                                    <h5 style="color:white">
+                                                        @*  <img style="width:100px;"src="@item.product.ProductImg1"/>*@
+                                                        @item.product.ProductName
+                                                    </h5>
+                                                    <div style="width:100%;justify-content:space-evenly;display:flex;">
+                                                        <button data-cartId="@item.cart.CartId" value="y" style="color:white" class="btn btn-black btn_Confirmation fontAorus">Yes</button>
+                                                        <button value="n" style="color:white" class="btn btn-black btn_Confirmation fontAorus">No</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            @*<hr class="my-4">*@
+                                        }
+                                        <span id="SpanMsg" class="alert alert-danger" style="display:none;position:absolute;right:40%;">Out Of Stock</span>
+
+                                        <div id="No_Items_Img"></div>
+                                        @if (Model.Sum(x => x.product.DisPrice * x.cart.Qty) == 0)
+                                        {
+                                            <div class="pt-5">
+                                                <h6 class="mb-0">
+                                                    <img id="No_Items_Img" src="https://www.dlinkmea.com/images/no-product.png" />
+                                                </h6>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="pt-5">
+                                                <h6 class="mb-0">
+                                                    <a href="~/CustomerStore/MerchandisePage" class="text-body">
+                                                        <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                                @*=======================================Summary==============================================*@
+                                <div class="col-lg-4 bg-secondary">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase Item_Cart_Count">@ViewBag.Count item</h5>
+                                            <h5 id="SubTotal">$ @Model.Sum(x=>x.product.DisPrice * x.cart.Qty)</h5>
+                                        </div>
+
+                                        <h5 class="text-uppercase mb-3">Shipping</h5>
+
+                                        <div class="mb-4 pb-2">
+                                            <select class="select" id="DeliveryOpt" onchange="DeliveryFee(this.value)">
+                                                <option value="5">Standard-Delivery- $5.00</option>
+                                                <option value="24">Chao-Delivery- $24.00</option>
+                                                <option value="8">Kelvin-Delivery- $8.00</option>
+                                                <option value="0">Free-Delivery- $0.00</option>
+                                            </select>
+                                        </div>
+
+
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Total price</h5>
+                                            <h5> $<span id="GrandTotal"></span></h5>
+                                        </div>
+
+                                        @if (Model.Sum(x => x.product.DisPrice * x.cart.Qty) == 0)
+                                        {
+                                            <button type="button" class="btn btn-dark btn-block btn-lg"
+                                                id="GotoStorePage" data-mdb-ripple-color="dark">
+                                                Shopping Button
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-dark btn-block btn-lg CheckOutBtn"
+                                                data-mdb-ripple-color="dark"
+                                                id="LinktoPeyment">
+                                                Check-Out
+                                            </button>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="~/js/cartlistjs/cart_list.js?3"></script>
+    <script>
+        checkStatus()
+        function checkStatus() {
+            $.ajax({
+                type: "GET",
+                url: "/CartListFunction/Checking_Product_Status",
+                success: function (data) {
+
+                    $.each(data,function(count,item){
+                        $(".errorMsg-"+item).text("This Item is Invaild").show()
+                        
+                    })
+                }
+            })
+        }
+        function checkStock() {
+
+        }
+                //function DeliveryFee(value) {
+                //    var subTotal = document.getElementById("TotolPrice").innerHTML;
+
+                //    var fixSubTotal = subTotal.slice(1);
+
+                //    var GrandTotal = parseInt(fixSubTotal) + parseInt(value);
+                //    document.getElementById("GrandASubTotal").innerHTML = GrandTotal
+
+                //}
+    </script>
+</body>

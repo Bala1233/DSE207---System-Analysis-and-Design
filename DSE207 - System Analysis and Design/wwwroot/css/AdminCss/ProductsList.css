@@ -1,0 +1,39 @@
+﻿img{
+    width:100px;
+}
+
+.Text_Design{
+    text-align:justify;
+   
+}
+
+.Container {
+    padding: 0px 30px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+
+
+.sort-button {
+    border: none;
+    background-color: #f7f7f7;
+}
+
+.statusBtn {
+    opacity: .9;
+}
+
+
+.EnabledBtn1 {
+    background-color: #4fb2d7;
+    color: white;
+}
+
+.DisableBtn1 {
+    background-color: dimgray;
+    color: white;
+}

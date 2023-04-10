@@ -1,0 +1,117 @@
+﻿@model DSE207___System_Analysis_and_Design.Models.Customer
+
+@{
+    ViewData["Title"] = "AdminEditCustomer";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="~/css/admincss/customerlist.css" rel="stylesheet" />
+
+<hr />
+
+<div class="container-fluid bg">
+    <div class="container edit-user">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="profile-pic">
+                    <img class="img-responsive user-pic" src="@Model.ImageUrl" alt="" />
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-9 col-md-9 pull-right">
+                <div class="personal-info">
+                    <h3 style="color:black;" class="heading">
+                        User Information  <button data-CustomerId="@Model.CustomerId" style="font-size:20px;float:right;" class="btn btn-danger BlockBtn">Block</button>
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="personal-info">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Id" style="display:none" class="control-label"></label>
+                                    <input asp-for="Id" style="display:none" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CustomerId" class="control-label"></label>
+                                    <input asp-for="CustomerId" readonly class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="FullName" class="control-label"></label>
+                                    <input asp-for="FullName" readonly class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input value="* * *" readonly class="form-control InputValue" />
+                                    <div class="ResetBtnC">
+                                        <button data-CustomerId="@Model.CustomerId" type="button" class="btn btn-primary ResetPasswordBtn">Reset Password</button>
+                                    </div>
+                                    <div style="display:none;position:absolute;" class="alert alert-success ChangePsBtn">The password has been changed</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div style="padding-top: 1.3rem;" class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" readonly class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" readonly class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Adress" class="control-label"></label>
+                                <input asp-for="Adress" readonly class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        $(".ResetPasswordBtn").click(function () {
+            var CusId = $(this).attr("data-CustomerId")
+            $.ajax({
+                type: "GET",
+                url: "/AdminFunction/Admin_Edit_Customer_Password?CustomerId=" + CusId,
+                success: function (data) {
+                    $(".InputValue").val(data)
+                    $(".ChangePsBtn").show(1000, function () {
+                        setTimeout(function () {
+                            $(".ChangePsBtn").hide(1000)
+                        }, 1000)
+                    })
+
+                }
+            })
+        })
+
+        $(".BlockBtn").click(function () {
+            var CusId = $(this).attr("data-CustomerId")
+            var btn = $(this);
+            $.ajax({
+                type: "GET",
+                url: "/AdminFunction/Admin_Edit_Customer_Status?CustomerId=" + CusId,
+                success: function (data) {
+                    alert(data)
+                    btn.toggleClass("EnabledBtn").toggleClass("DisableBtn")
+                    var statusValue = data == true ? "Active" : "Block";
+                    btn.text(statusValue)
+                }
+            })
+        })
+    })
+</script>

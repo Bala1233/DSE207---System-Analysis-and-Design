@@ -1,0 +1,188 @@
+﻿@model IEnumerable<DSE207___System_Analysis_and_Design.Models.Seller>
+
+@{
+    ViewData["Title"] = "SellerList";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<link href="~/css/sellercss/sellercss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .modal-backdrop{
+        display:none;
+    }
+</style>
+<div class="Container">
+    <h2>Seller List  <input style="float:right" placeholder="Search" id="Keyword" /></h2>
+    <table id="tableList" class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input id="SelectAll" style="width:20px;height:20px" type="checkbox"  />
+                    <label> All</label>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SellerId)
+                    <button class="sort-button" onclick="sortTable(0,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                    <button class="sort-button" onclick="sortTable(1,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+
+                @* <th>
+                @Html.DisplayNameFor(model => model.Adress1)
+                <button class="sort-button" onclick="sortTable(2,122)">
+                <i class="fa-sharp fa-solid fa-sort"></i>
+                </button>
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Adress2)
+                <button class="sort-button" onclick="sortTable(3,122)">
+                <i class="fa-sharp fa-solid fa-sort"></i>
+                </button>
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                    <button class="sort-button" onclick="sortTable(4,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                    <button class="sort-button" onclick="sortTable(5,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                    <button class="sort-button" onclick="sortTable(6,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                    <button class="sort-button" onclick="sortTable(7,Number)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inverify)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="OrderList">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="selectBox">
+                        <input style="width:20px;height:20px" type="checkbox" class="selectBox" value='@item.SellerId'  >
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SellerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    @*
+                <td>
+                @Html.DisplayFor(modelItem => item.Adress1)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Adress2)
+                </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            @if (@item.Inverify == true)
+                            {
+                                <input class="form-check-input flexCheckCheckedDisabled" type="checkbox" value="@item.Inverify" id="defaultCheck2" checked disabled>
+                            }
+                            else
+                            {
+                                <input class="form-check-input flexCheckCheckedDisabled" type="checkbox" value="@item.Inverify" id="defaultCheck2" disabled>
+
+                            }
+                        </div>
+                    </td>
+                    <td><button style="font-size:1px;" data-SellerId="@item.SellerId" class="btn statusBtn">Verify</button></td>
+                    <td><button style="font-size:1px;" data-SellerId="@item.SellerId" class="btn ProductsBtn">Manage Products</button></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <div style="display:none;" class="multiBtnContainer">
+        <div id="MultiBtnDiv" style="display:flex;position:absolute;bottom:40px;right:40px;z-index:2;justify-content:space-between;width:450px">
+            <button class="btn btn-success" id="activeSelectedProduct" style="width:100px;padding:5px 10px">Active</button>
+            <button class="btn btn-warning" id="disabledSelectedProduct" style="width:100px;padding:5px 10px">Disabled</button>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/PublicGrid/DataGrid.js"></script>
+<script src="~/AdminLte/Js/SellerList.js?3"></script>
+<script>
+    $(function () {
+        $(".statusBtn").click(function () {
+            var SellerId = $(this).attr("data-SellerId");
+            var btn = $(this)
+            $.ajax({
+                type: "Get",
+                url: "/AdminFunction/Admin_Verify_Seller?SellerId=" + SellerId,
+                success: function (data) {
+
+                    data == true ? btn.parents("tr").find(".flexCheckCheckedDisabled").attr("checked", true)
+                        : btn.parents("tr").find(".flexCheckCheckedDisabled").attr("checked", false)
+                }
+            })
+        })
+
+        $(".ProductsBtn").click(function () {
+            var SelectedId = $(this).attr("data-SellerId");
+
+            $.ajax({
+                type: "GET",
+                url: "/AdminFunction/Admin_Manage_ProductAjax?SellerId=" + SelectedId,
+                success: function (data) {
+                    if (data == "Null") {
+                        alert("This Seller Products is null")
+                    }
+                    else {
+                        location.href = "/Admin/AdminManageProducts?SellerId=" + SelectedId
+
+                    }
+                }
+            })
+        })
+        $("#Keyword").keyup(function () {
+            var value = $(this).val().toLowerCase()
+
+            $("#OrderList tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        })
+    })
+
+</script>

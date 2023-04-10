@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DSE207___System_Analysis_and_Design</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link href="~/css/Merchandise/theme.css" rel="stylesheet" />
+    <link href="~/css/Main/Fotter.css" rel="stylesheet" />
+    <link href="~/css/Merchandise/SearchBar.css" rel="stylesheet" />
+    <link href="~/css/Merchandise/slideCart.css" rel="stylesheet" />
+    <link href="~/css/Merchandise/SliderPage.css" rel="stylesheet" />
+    <link href="~/css/Merchandise/_customer_Side_Cart.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/Image/NeneCar.jpg" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family
+         =Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    @*============================== Customer Layout ========================================*@
+
+
+    <header class="site-header page-element is is-moved-by-drawer" role="banner" data-section-id="header" data-section-type=header>
+        <div class="site-header__upper page-width">
+            <div class="grid grid--table">
+                <div class="grid__item small--one-half medium-up--two-thirds small--text-center">
+                    <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+                        <a href="~/CustomerStore/MerchandisePage" itemprop="url" class="site-header__logo-link">
+                            <img src="~/Image/YOSTAR.png" alt="Yostar Official Store" itemprop="logo" />
+                        </a>
+                    </h1>
+                </div>
+                <!--===================================Search Bar==========================================-->
+                <div class="grid__item small--one-quarter medium-up--one-third text-right">
+                    <div class="site-header__search-cart-wrapper">
+                        @*  <div class="search-wrapper">
+                        <div class="input-holder">
+                        <input id="searchBar" type="text" class="search-input" placeholder="Type to search" />
+                        <button id="SearchIcon" class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+                        </div>
+                        <span class="close" onclick="searchToggle(this, event);"></span>
+                        </div>*@
+                        <div id="Profilebtn">
+                            <img style="width:10%" src="https://freesvg.org/img/abstract-user-flat-4.png" />
+                        </div>
+                    </div>
+
+                    <!--============================================Cart Button=======================================-->
+                    <a id="open-panel" class="site-header__link site-header__cart">
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 31 32">
+                            <path d="M14.568 25.629c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm10.22 0c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm2.555-3.777H12.457L7.347 7.078c-.222-.333-.555-.667-1-.667H1.792c-.667 0-1.111.444-1.111 1s.444 1 1.111 1h3.777l5.11 14.885c.111.444.555.666 1 .666h15.663c.555 0 1.111-.444 1.111-1 0-.666-.555-1.111-1.111-1.111zm2.333-11.442l-18.44-1.555h-.111c-.555 0-.777.333-.667.889l3.222 9.22c.222.555.889 1 1.444 1h13.441c.555 0 1.111-.444 1.222-1l.778-7.443c.111-.555-.333-1.111-.889-1.111zm-2 7.443H15.568l-2.333-6.776 15.108 1.222-.666 5.554z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="StickNavWrapper" style="height:59.2px;">
+            <div id="StickyBar" class="sticky">
+                <nav class="nav-bar small--hide" role="navigation" id="StickyNav">
+                    <div class="page-width">
+                        <div class="grid grid--table">
+                            <div class="grid__item four-fifths" id="SiteNavParent">
+                                <ul class="site-nav list--inline" id="SiteNav">
+                                    <li class="site-nav__item"> <a href="~/CustomerStore/AzurLanePage" class="site-nav__link">Azur Lane</a>   </li>
+                                    <li class="site-nav__item"> <a href="~/CustomerStore/MahjongSoulPage" class="site-nav__link">Mahjong Soul</a>   </li>
+                                </ul>
+                            </div>
+                            <div class="grid__item one-fifth text-right">
+                                <div class="customer-login-links sticky-hidden">
+                                    <a href="~/CustomerLogin/LoginPage" id="customer_login_link">Account</a>
+                                    <a href="~/CustomerStoreFunction/CustomerLogout" id="customer_login_link">Logout</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </nav>
+                <div id="NotificationSuccess" class="notification notification--success" aria-hidden="true"></div>
+                <div id="NotificationError" class="notification notification--error" aria-hidden="true"></div>
+
+
+            </div>
+        </div>
+
+
+        <!-- Start of slide cart-->
+        <div class="cart-panel">
+            <!-- slide cart header -->
+            <div class="cart-header">
+                <!-- close Icon-->
+                <i data-v-ecfbc8e2="" id="close-panel" style="font-size:36px;" class="fa fa-times"></i>
+                <!-- header content-->
+                <div style="float:right;padding-right:15px;">
+                    <h3 class="fontAorus">Cart</h3>
+                </div>
+                <!-- end of header content-->
+            </div>
+            <!-- slide cart content -->
+            <div class="cart-content fontContent">
+                <!-- entire products row -->
+                <div class="products">
+                    <!-- each product row -->
+                    <div id="SmallCartList">
+                    </div>
+
+
+                </div>
+                <!-- Cart Check out  -->
+                <div id="CheckOutBtn">
+                </div>
+
+                <div class="slideCartCheckOut">
+                    <button id="ToCartList">
+                        <!-- to the check out page or details -->
+                        <div class="alert alert-danger" style="display:none" id="No_ID"></div>
+                        Checkout
+                        <i class="fa fa-arrow-right" style="font-size:24px; font-weight:300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- show shadow -->
+        <div class="cartShadow"></div>
+    </header>
+    <div style="margin:0px;z-index:1;position:absolute;top:0px;display:none;width:100%;text-align:center" class="alert alert-dark alert-dismissible  ProfilesAlertMsg" role="alert">
+        <strong></strong>
+
+    </div>
+
+
+    @* <div class="container">
+    <main role="main" class="pb-3">
+
+    </main>
+    </div>*@
+    <main style="min-height:580px">
+        @RenderBody()
+    </main>
+
+    <footer class=" footer text-muted">
+
+        <!--=======================================  Fotter  =============================================-->
+        <div class="footer-wrap" data-v-17ac95b2 data-v-3d33da58>
+            <div class="Logo" data-v-17ac95b2>
+                <img class="Yostar" src="~/Image/YOSTAR.png" data-v-17ac95b2 />
+                <img class="Catfood" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAABWCAMAAACAVIq8AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAMAUExURQAAAPf39/////////////////////////////Hx8v////////////////////////////////////////////////////////////////////////////////////////////39/v////////////////////////X19f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9XV1v///////////////////9bW1/////z8/P///////////9bW1////9XV1tbW19XV1tXV1v///9XV1v///////9XV1tXV1tXV1uPj49XV1tzc3djY2f///////+jo6dnZ2uvr69XV1u3t7u/v79jY2NjY2dXV1tXV1tXV1tXV1tXV1tXV1tzc3PT09llXV+/v8DAtLYKAgAMDA3BubxkVFVNQUAAAAN3d3vz8/P///wQAAAAAANXV1gIAANTU1dDQ0dHR0gUAAN3d3s7Oz9jY2ebl5dPT1P/+//b299vb2zYzMw8LC0xJSW9tbejn6GpoaPX19QoHB+Dg4eLi4/r6+vLy8nx7e1tZWUI/P6+urouKiiomJhMQEMPCwsbFxfj39+/u7jo4OBsXF7OysmZjY3Z0dOzs7K2rq/39/RYTE09NTSIfHwYEBFZUVHl4eJKRkYOBgZ6dnaCfnzIvL7i3tz47O6empvDw8B8bG8nJyZaUlIWDg0hGRpAzEOrq6uTk5ainpyUiIr++vkZDQ4+NjWJfX/5jHpiXl7y8vM7MzC4rKqSioi8MAulUFzQhGuYqAOs4AP97JnwsDp4/E2IjCyELA9bV1Z8lAN/u85yamvvd0Pzm3f+BS8HY37QkAJ2mq/ObjP1EAdM+A/Ode+hGCP/Bofm0mPrSwvhaHO91RP708eIRAKnj+UsAAACNdFJOUwAE/MZTFM1wvAPjr5nAK1gc7dfDh4rRX/0K6N/Kfgc19CjqLQ6gJJsBAmIgHoC0Ze9n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" data-v-17ac95b2 />
+            </div>
+            <div class="aside" data-v-17ac95b2>
+                <div class="linkList" data-v-17ac95b2>
+                    <a href="/#" data-v-17ac95b2>PRIVACY POLICY</a>
+                    <a href="/#" data-v-17ac95b2>TERMS OF USE</a>
+                    <a href="/#" data-v-17ac95b2>CONTACT US</a>
+                </div>
+                <span class="lnc" data-v-17ac95b2>
+                    ©2023 CHEONG NETWORK TECHNOLOGY CO., LIMITED<br data-v-17ac95b2 />
+                    <br data-v-17ac95b2 />
+                    ©2023 TOSTAR (MY) LIMITED
+                </span>
+            </div>
+        </div>
+
+
+
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/CustomerStore/SearchFunction1.js"></script>
+    <script src="~/js/CustomerStore/CartFunction1.js?501"></script>
+    <script src="~/js/CustomerStore/_customer_side_cart1.js?1"></script>
+    <script>
+        //alert(document.URL.split("/")[4])
+
+        $(function () {
+
+            $("#Profilebtn").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/ProfileFunction/Profile_Ajax",
+                    success: function (data) {
+                        if (data == "Nothing") {
+                            $(".ProfilesAlertMsg").children("strong").text("Please Login Or SignIn !")
+                            $(".ProfilesAlertMsg").slideDown(1000, function () {
+                                setTimeout(function () {
+                                    $(".ProfilesAlertMsg").slideUp(1000)
+                                }, 1000)
+                            })
+                        } else {
+                            location.href = "/CustomerProfiles/Profile"
+                        }
+                    }
+                })
+            })
+
+
+            $("#ToCartList").click(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/CartListFunction/To_Cart_List",
+                    success: function (data) {
+                        if (data == "Please Login") {
+                            $("#No_ID").text("Plaese Login")
+                            $("#No_ID").fadeIn(1000, function () {
+                                setTimeout(function () {
+                                    $("#No_ID").fadeOut()
+                                    location.href = "/CustomerStore/CartList"
+                                }, 2000)
+                            })
+                        } else {
+                            location.href = "/CustomerStore/CartList"
+                        }
+                    }
+                })
+            })
+        })
+
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "MerchandiseDetailsPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/PeoductsDetails.css">
+<link rel="stylesheet" href="~/css/Merchandise/theme.css">
+
+<div id="ProductDetails" style="font-family:'Times New Roman', Times, serif;" class="row">
+</div>
+<div class="relatest_product border-top pt-3">
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="row">
+            <div class="col-1"> </div>
+            <div class="col-10">
+                <h1>Planning</h1>
+                @* <ul class="mystyle-products">
+                @foreach (var item in ViewBag.ShowProductImg)
+                {
+                <li class="product">
+
+                <div onclick="ToDetails(@item.Id)" style="display:flex;justify-content:center" class="photoFunc">
+
+                <img alt="" class="img-back" src="@item.ProductImg1" />
+                <img alt="" class="img-font" src="@item.ProductImg2" />
+                </div>
+
+                <h3 style="font-size:20px;font-family:Times New Roman"> @item.ProductName</h3>
+                <div class="price row">
+                <del class="amount col-3">$@item.OriPrice  </del>
+                <ins class="amount col-3">$@item.DisPrice </ins>
+                </div>
+                </li>
+                }
+                </ul>*@
+            </div>
+            <div class="col-1"> </div>
+        </div>
+        <div class="col-10">
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/CustomerStore/AddToCart.js?2"></script>
+<script src="~/js/CustomerStore/AddMinusQty.js?2"></script>
+<script>
+    $(function () {
+     
+    })
+
+
+
+</script>

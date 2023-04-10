@@ -1,0 +1,95 @@
+﻿
+.Container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+#DeleteBtn{
+    background-color:red;
+}
+.sort-button {
+    border: none;
+    background-color: #f7f7f7;
+}
+
+.ResetBtnC {
+    padding-top: 1rem;
+    padding-bottom:1rem;
+}
+
+.EnabledBtn {
+    background-color: #4fb2d7;
+    color: white;
+}
+
+.DisableBtn {
+    background-color: dimgray;
+    color: white;
+}
+/*======================================Edit Customer List Css==========================================*/
+@@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic,400italic,300italic,700italic);
+
+.edit-user {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+    .edit-user .profile-pic {
+        padding: 20px;
+        margin-bottom: 15px;
+        background-color: white;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+        .edit-user .profile-pic:hover .change-image {
+            opacity: 1;
+        }
+
+        .edit-user .profile-pic .user-pic {
+            width: 250px;
+            margin: 0 auto;
+        }
+
+        .edit-user .profile-pic .change-img-btn {
+            margin-top: 20px;
+            background-color: #FE615D;
+            border: none;
+            color: #fff;
+        }
+
+        .edit-user .profile-pic .change-image {
+            position: relative;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            display: table;
+            padding: 10px;
+            margin-top: -40px;
+            width: 100%;
+            opacity: 0;
+            -webkit-transition: opacity 500ms;
+            -moz-transition: opacity 500ms;
+            -o-transition: opacity 500ms;
+            transition: opacity 500ms;
+        }
+
+.personal-info {
+    padding: 20px;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    background-color: white;
+    color: #fff;
+    border-radius: 8px;
+}
+
+    .personal-info .heading {
+        border-bottom: 3px solid #fff;
+        padding-bottom: 10px;
+    }
+
+.edit-user .save-edit-btn {
+    background-color: #FE615D;
+    border: none;
+    color: #fff;
+}

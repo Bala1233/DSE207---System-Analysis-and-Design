@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "AdminLoginPage";
+    Layout = null;
+}
+
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/css/AdminCss/AdminLogin.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <section>
+        @*<h1>Login</h1>*@
+        <div class="content">
+            <p class="admin-text m-top-xl">Admin Login</p>
+            <img style="position:absolute;left:98px;top:221px;width:30%" src="https://vectorified.com/images/admin-logo-icon-6.png" />
+            <div class="panel">
+                <img class="client-logo" src="https://logodix.com/logo/866731.png" alt="" />
+
+                <label for="Email">Email</label><br />
+                <input style="font-size:30px;" type="text" id="email" name="Email" placeholder="Type your Email">  <br />
+                <label for="password">Password</label><br />
+                <input style="font-size:30px;" type="password" id="password" name="Password" placeholder="Type your password">
+
+                <div class="Login_Btn_Css">
+                    <button type="button" class="login-btn">Login</button>
+                </div>
+                <br />
+                <span id="loginError" style="color:red"> </span>
+                <p>Back To Customer Login <a href="~/CustomerLogin/LoginPage">Customer-Login</a></p>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".login-btn").click(function () {
+
+                var email = $("#email").val()
+                var password = $("#password").val()
+                $.post("/AdminFunction/AdminLoginPage", { Email: email, Password: password }, function (data) {
+                    if (data == "Success") {
+                        location.href = "/Admin/Dashboard";
+                    } else {
+                        $("#password").val("")
+                        $("#loginError").text("Email or Password are incorrect.")
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

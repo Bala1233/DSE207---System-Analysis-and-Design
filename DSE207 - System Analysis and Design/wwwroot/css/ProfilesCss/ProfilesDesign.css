@@ -1,0 +1,25 @@
+﻿.Left_Box {
+    float: left;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: lightskyblue;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+    .Left_Box .card {
+        background-color: lightcyan;
+    }
+
+.Right_Box {
+    margin-top: 1rem;
+    float: right;
+    width: 50%;
+    padding-left: 50px;
+}
+
+.container .Left_Box .card img {
+    border-radius: 50%;
+}

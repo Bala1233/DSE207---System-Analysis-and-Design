@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "AzurLanePage";
+}
+
+<link href="~/css/merchandise/theme.css" rel="stylesheet" />
+
+<div class="page-container page-element is-moved-by-drawer">
+    <main class="main-content" id="MainContent" role="main">
+
+
+        <div class="page-width">
+
+            <header class="grid medium-up--grid--table section-header small--text-center">
+                <div class="grid__item medium-up--one-half section-header__item">
+                    <h1 class="section-header__title">
+                        Azur Lane
+
+                    </h1>
+
+                </div>
+                <div class="grid__item medium-up--one-half medium-up--text-right section-header__item">
+                    <div id="shopify-section-collection-filters" class="shopify-section">
+                        <div data-section-id="collection-filters" data-section-type="collection-filters">
+                          
+                            <div class="collection-sort">
+                                <label for="SortBy" class="collection-sort__label">Sort by</label>
+                                <select name="sort_by" id="SortBy" aria-describedby="a11y-refresh-page-message a11y-selection-message" class="collection-sort__input">
+                                    <option value="manual" selected="selected">Featured</option>
+@*                                    <option value="best-selling">Best selling</option>
+*@                                    <option value="title-ascending">Alphabetically, A-Z</option>
+                                    <option value="title-descending">Alphabetically, Z-A</option>
+                                    <option value="price-ascending">Price, low to high</option>
+                                    <option value="price-descending">Price, high to low</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="ItemForSearch" class="grid grid--no-gutters grid--uniform">
+                <div id="ItemList">
+         
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/FilterFunction.js"></script>
+<script src="~/js/CustomerStore/CustomerAzurFunction1.js?2"></script>
+
+
+

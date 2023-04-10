@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "MainPage";
+}
+<!--=======================================Cant Use ============================================-->
+
+<link href="~/css/Main/SideBar.css" rel="stylesheet" />
+<link href="~/css/Main/Home.css" rel="stylesheet" />
+<link href="~/css/Main/Fotter.css" rel="stylesheet" />
+<link href="~/css/Main/Body.css" rel="stylesheet" />
+
+<div id="app" data-v-app>
+    <div ondragstart="return false" data-v-3d33da58">
+
+        <!--=======================================Side Bar============================================-->
+        <div class="nav-wrap" data-v-bba18a2e data-v-3d33da58>
+            <img class="bg" src="https://webusstatic.yo-star.com/mahjongsoul_us_web/mainsite/prod/assets/bg.257d94ab.png" data-v-bba18a2e>
+            <div class="nav" data-v-bba18a2e>
+                <img class="logo" src="https://webusstatic.yo-star.com/mahjongsoul_us_web/mainsite/prod/assets/logo.a5b790bd.png" data-v-bba18a2e>
+                <!--v-if-->
+                <div class="menuList" data-v-bba18a2e>
+                    <a aria-current="page" href="#" class="rounter-link-active rounter-link-exact-active" data-v-bba18a2e>
+                        <span class="active" data-v-bba18a2e>home</span>
+                        <img class="decorate" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAICAYAAAAMY1RdAAAA0ElEQVQoka3SoWsCcRjG8c9dMBgWRFjYH2BYWVmVsTpY2OL6QCyGwcLK8hAcrMhA/wHrsk3EsWIRuzMYDbvi4BamIMfdWe5NP758eZ4fvG8Qb6YKmms84xRLvOEVcVBQyS0GCBL8BY+HSip4QhVdjDO8OWop/BcnQbyZ3uMMD4gS0geutu9oG/SdcMr4yfnoZYg2GrhIEeqJsPMUJ8I6p2QVookOhinCPoswyQjqZfARZod2coQWjvGOLLmEPu722CdusCzqunZT83/CC3whhj8jmzQT5ZBQbAAAAABJRU5ErkJggg==" data-v-bba18a2e>
+                    </a>
+                    <a href="~/CustomerStore/MerchandisePage" data-v-bba18a2e>
+                        <span data-v-bba18a2e>merchandise</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav_wrap" data-v-3d33da58></div>
+        <!--=====================================Center Design==========================================-->
+        <div class="home-wrap contents" data-v-c2ba62f2 data-v-3d33da58>
+            <div class="index-wrap contents" data-v-f5d6f662 data-v-c2ba62f6 style="--33bb04c8:1">
+                <img class="girls" src="https://webusstatic.yo-star.com/mahjongsoul_us_web/mainsite/prod/assets/Kaguyahime&Ichihime.ca0be3b0.png" data-v-f5d6f662>
+                <img class="girlss" src="https://webusstatic.yo-star.com/mahjongsoul_us_web/mainsite/prod/assets/Kaguyahime&Ichihime.ca0be3b0.png" data-v-f5d6f662>
+                <img class="text" src="https://webusstatic.yo-star.com/mahjongsoul_us_web/mainsite/prod/assets/text.feb5b829.png" data-v-f5d6f662 />
+                <a class="play" href="#" data-v-f5d6f662>
+                    <img src="~/startbuy.png" data-v-f5d6f662 />
+                </a>
+            </div>
+            <!--=====================================Center Bottom Design==========================================-->
+            @* <div class="news-wrap contents" data-v-1d57666f data-v-c2ba62f6>
+            <div class="news" data-v-1d57666f>
+            </div>
+            </div>*@
+
+            <!--=======================================  Fotter  =============================================-->
+            <div class="footer-wrap" data-v-17ac95b2 data-v-3d33da58>
+                <div class="Logo" data-v-17ac95b2>
+                    <img class="Yostar" src="~/YOSTAR.png" data-v-17ac95b2 />
+                    <img class="Catfood" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAABWCAMAAACAVIq8AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAMAUExURQAAAPf39/////////////////////////////Hx8v////////////////////////////////////////////////////////////////////////////////////////////39/v////////////////////////X19f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9XV1v///////////////////9bW1/////z8/P///////////9bW1////9XV1tbW19XV1tXV1v///9XV1v///////9XV1tXV1tXV1uPj49XV1tzc3djY2f///////+jo6dnZ2uvr69XV1u3t7u/v79jY2NjY2dXV1tXV1tXV1tXV1tXV1tXV1tzc3PT09llXV+/v8DAtLYKAgAMDA3BubxkVFVNQUAAAAN3d3vz8/P///wQAAAAAANXV1gIAANTU1dDQ0dHR0gUAAN3d3s7Oz9jY2ebl5dPT1P/+//b299vb2zYzMw8LC0xJSW9tbejn6GpoaPX19QoHB+Dg4eLi4/r6+vLy8nx7e1tZWUI/P6+urouKiiomJhMQEMPCwsbFxfj39+/u7jo4OBsXF7OysmZjY3Z0dOzs7K2rq/39/RYTE09NTSIfHwYEBFZUVHl4eJKRkYOBgZ6dnaCfnzIvL7i3tz47O6empvDw8B8bG8nJyZaUlIWDg0hGRpAzEOrq6uTk5ainpyUiIr++vkZDQ4+NjWJfX/5jHpiXl7y8vM7MzC4rKqSioi8MAulUFzQhGuYqAOs4AP97JnwsDp4/E2IjCyELA9bV1Z8lAN/u85yamvvd0Pzm3f+BS8HY37QkAJ2mq/ObjP1EAdM+A/Ode+hGCP/Bofm0mPrSwvhaHO91RP708eIRAKnj+UsAAACNdFJOUwAE/MZTFM1wvAPjr5nAK1gc7dfDh4rRX/0K6N/Kfgc19CjqLQ6gJJsBAmIgHoC0Ze9n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" data-v-17ac95b2 />
+                </div>
+                <div class="aside" data-v-17ac95b2>
+                    <div class="linkList" data-v-17ac95b2>
+                        <a href="/#" data-v-17ac95b2>PRIVACY POLICY</a>
+                        <a href="/#" data-v-17ac95b2>TERMS OF USE</a>
+                        <a href="/#" data-v-17ac95b2>CONTACT US</a>
+                    </div>
+                    <span class="lnc" data-v-17ac95b2>
+                        ©2023 CHEONG NETWORK TECHNOLOGY CO., LIMITED<br data-v-17ac95b2 />
+                        <br data-v-17ac95b2 />
+                        ©2023 TOSTAR (MY) LIMITED
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

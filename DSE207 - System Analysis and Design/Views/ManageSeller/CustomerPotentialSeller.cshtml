@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DSE207___System_Analysis_and_Design.Models.Tools.potentialViewmodel>
+
+@{
+    ViewData["Title"] = "CustomerPotentialSeller";
+    Layout = "~/Views/Shared/Seller_Layout.cshtml";
+}
+
+<link href="~/css/sellercss/potential.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="Container">
+    <h2>Customer Potential Seller <input style="float:right" placeholder="Search" id="Keyword" /></h2>
+    <table class="table" id="tableList">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.customerName)
+                    <button class="sort-button" onclick="sortTable(0,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productName)
+                    <button class="sort-button" onclick="sortTable(1,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phoneNumber)
+                    <button class="sort-button" onclick="sortTable(2,Number)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                    <button class="sort-button" onclick="sortTable(3,122)">
+                        <i class="fa-sharp fa-solid fa-sort"></i>
+                    </button>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody id="OrderList">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.customerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/PublicGrid/DataGrid.js"></script>
+<script>
+    $(function () {
+        $("#Keyword").keyup(function () {
+            var value = $(this).val().toLowerCase()
+
+            $("#OrderList tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        })
+    })
+
+</script>

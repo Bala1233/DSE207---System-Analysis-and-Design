@@ -1,0 +1,377 @@
+﻿@model DSE207___System_Analysis_and_Design.Models.Seller
+@{
+    ViewData["Title"] = "SellerLoginPage";
+    Layout = null;
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/css/AdminCss/AdminLogin.css?1" rel="stylesheet" />
+    <link href="~/css/SellerCss/SellerCss.css" rel="stylesheet" />
+    <style>
+        .custom-model-main {
+            text-align: center;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0; /* z-index: 1050; */
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+            opacity: 0;
+            -webkit-transition: opacity 0.15s linear, z-index 0.15;
+            -o-transition: opacity 0.15s linear, z-index 0.15;
+            transition: opacity 0.15s linear, z-index 0.15;
+            z-index: -1;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .model-open {
+            z-index: 99999;
+            opacity: 1;
+            overflow: hidden;
+        }
+
+        .custom-model-inner {
+            -webkit-transform: translate(0, -25%);
+            -ms-transform: translate(0, -25%);
+            transform: translate(0, -25%);
+            -webkit-transition: -webkit-transform 0.3s ease-out;
+            -o-transition: -o-transform 0.3s ease-out;
+            transition: -webkit-transform 0.3s ease-out;
+            -o-transition: transform 0.3s ease-out;
+            transition: transform 0.3s ease-out;
+            transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+            display: inline-block;
+            vertical-align: middle;
+            width: 600px;
+            margin: 30px auto;
+            max-width: 97%;
+        }
+
+        .custom-model-wrap {
+            color: white;
+            display: block;
+            width: 100%;
+            position: relative;
+            background-color: rgba(0,0,0,.8);
+            /*border: 1px solid skyblue;*/
+            border-radius: 6px;
+            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+           /* box-shadow: 0 3px 9px skyblue;*/
+            background-clip: padding-box;
+            outline: 0;
+            text-align: left;
+            padding: 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .model-open .custom-model-inner {
+            -webkit-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+            position: relative;
+            z-index: 999;
+        }
+
+        .model-open .bg-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99;
+        }
+
+        .bg-overlay {
+            background: rgba(0, 0, 0, 0);
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            -webkit-transition: background 0.15s linear;
+            -o-transition: background 0.15s linear;
+            transition: background 0.15s linear;
+        }
+
+        .closeSuccess-btn {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            cursor: pointer;
+            z-index: 99;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .pop-up-content-wrap {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        @@media screen and (min-width:800px) {
+            .custom-model-main:before {
+                content: "";
+                display: inline-block;
+                height: auto;
+                vertical-align: middle;
+                margin-right: -0px;
+                height: 100%;
+            }
+        }
+
+        @@media screen and (max-width:799px) {
+            .custom-model-inner {
+                margin-top: 45px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="FrontPage">
+        <section>
+            @*<h1>Login</h1>*@
+            <div class="content">
+                <p class="admin-text m-top-xl">Seller Login</p>
+                <img style="position:absolute;left:80px;top:150px;width:30%" src="https://stickershop.line-scdn.net/stickershop/v1/product/12065206/LINEStorePC/main.png;compress=true" />
+                <div class="panel">
+                    <h1>Login To Seller Center</h1><br />
+
+                    <label for="Email">Email</label><br />
+                    <input style="font-size:30px;" type="text" id="username" name="Username" placeholder="Type your Email">  <br />
+                    <label for="password">Password</label><br />
+                    <input style="font-size:30px;" type="password" id="password" name="Password" placeholder="Type your password">
+
+                    <div class="Login_Btn_Css">
+                        <button type="button" class="login-btn">Login</button>
+                    </div>
+                    <br />
+                    <span id="loginError" style="color:red"> </span>
+                    @* <p>Back To Customer Login <a href="~/CustomerLogin/LoginPage">Customer-Login</a></p>*@
+                    <button class="btn btn-primary SwitchBtn">Register Seller</button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <div id="BackPage" style="display:none">
+        <div class="content">
+            <p class="admin-text m-top-xl">Register Seller</p>
+            <div class="panel_Back">
+                <div class="row Container">
+                    <form asp-action="CreateSeller" id="contactForm" class="row g-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Username" class="control-label"></label>
+                                <input asp-for="Username" id="Username" class="form-control CheckingForm" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" id="Password" class="form-control CheckingForm" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" id="Phone" class="form-control CheckingForm" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Adress1" class="control-label"></label>
+                                <input asp-for="Adress1" id="Adress1" class="form-control CheckingForm" />
+                                <span asp-validation-for="Adress1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Adress2" class="control-label"></label>
+                                <input asp-for="Adress2" id="Adress2" class="form-control CheckingForm" />
+                                <span asp-validation-for="Adress2" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="City" class="control-label"></label>
+                                <input asp-for="City" id="City" class="form-control CheckingForm" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="State" class="control-label"></label>
+                                <input asp-for="State" id="State" class="form-control CheckingForm" />
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Country" class="control-label"></label>
+                                <select asp-for="Country" id="Country" class="form-select CheckingForm" aria-label="Default select example ">
+                                    <option selected>Open this select menu</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="American">American</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="width:100px;" type="button" class="btn btn-primary OtpBtn">OTP</div>
+                        <div class="forms_field">
+                            <input required id="OtpPlace" type="text" style="display:none" placeholder="6 Digit" class="forms_field-input " />
+                            <span class="ErrorMsgSpan"></span>
+                        </div>
+                        <div id="OtpMsg" style="display:none">OTP Sent</div>
+                        <div class=" Login_Btn_Css">
+                            <button type="submit" id="CreateBtn" class="btn btn-primary" disabled>Register</button>
+                        </div>
+
+                    </form>
+                </div>
+                <button class="btn btn-primary SwitchBtn">Register Seller</button>
+            </div>
+        </div>
+    </div>
+    <div class="custom-model-main">
+        <div class="custom-model-inner">
+            <div class="closeSuccess-btn">×</div><div class="custom-model-wrap">
+                <div class="pop-up-content-wrap fontAorus">
+                    Register Success!<br /> Close this window back to login
+                </div>
+            </div>
+        </div><div class="bg-overlay"></div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".login-btn").click(function () {
+
+                var username = $("#username").val()
+                var password = $("#password").val()
+                $.post("/SellerFunction/SellerLoginFunction", { Username: username, Password: password }, function (data) {
+                    if (data == "Success") {
+                        location.href = "/ManageSeller/DashBoard";
+                    } else {
+                        $("#password").val("")
+                        $("#loginError").text("Email or Password are incorrect.")
+                     
+                    }
+                })
+            })
+            $(".CheckingForm").change(function () {
+
+                var cheking = $(".CheckingForm").filter(function () {
+                    return this.value != "";
+
+                })
+
+                if (cheking.length == 8) {
+                    $("#CreateBtn").prop("disabled", false)
+                }
+                else {
+                    $("#CreateBtn").prop("disabled", true)
+                }
+            })
+
+            $(".SwitchBtn").click(function () {
+                if ($("#BackPage").css("display") == "none") {
+                    $("#FrontPage").fadeOut(200, function () {
+                        $("#BackPage").fadeIn(200)
+                    })
+
+                } else {
+                    $("#BackPage").fadeOut(200, function () {
+                        $("#FrontPage").fadeIn(200)
+                    })
+                }
+            })
+
+            var opt;
+            $(".OtpBtn").click(function () {
+                $("#OtpMsg").fadeIn(3000);
+                $(".OtpBtn").fadeOut(500);
+                $("#OtpPlace").fadeIn(3000);
+
+                $.ajax({
+                    type: "GET",
+                    url: "/CustomerLogin/RegisterOtpAjax",
+                    async: false,
+                    success: function (data) {
+                        opt = data
+                    }
+                })
+
+            })
+            $('#contactForm').submit(function () {
+                //Submit Function Break,
+                return false;
+            });
+            $("#CreateBtn").click(function () {
+
+                var otpPass = $("#OtpPlace").val();
+                alert(opt)
+                alert(otpPass)
+                if (otpPass != opt || typeof opt === "undefined") {
+
+                    $("#OtpPlace").next().text("**OTP password Incorrect")
+                    return;
+                }
+                else {
+                    $(this).prev().find(".ErrorMsgSpan").text("")
+
+                    var NewcCustomer = new Object({
+                        Username: $("#Username").val(),
+                        Password: $("#Password").val(),
+                        Phone: $("#Phone").val(),
+                        Adress1: $("#Adress1").val(),
+                        Adress2: $("#Adress2").val(),
+                        City: $("#City").val(),
+                        State: $("#State").val(),
+                        Country: $("#Country").val()
+                    })
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/ManageSeller/CreateSeller",
+                        data: { seller: NewcCustomer },
+                        success: function (data) {
+
+                            $(".custom-model-main").addClass('model-open');
+                            $(".closeSuccess-btn, .bg-overlay").click(function () {
+                                $(".custom-model-main").removeClass('model-open');
+                                $(".SwitchBtn").click()
+                            });
+                        }
+                    })
+                }
+
+            })
+
+
+
+        })
+    </script>
+</body>
+</html>
+
